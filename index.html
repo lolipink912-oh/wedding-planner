@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>婚禮計畫書</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,400;1,500&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 花草線稿圖庫 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="leaf" viewBox="-2 -16 44 32"><path d="M0 0C10-15 30-15 40 0 30 15 10 15 0 0z" fill="#e6eef8" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 0H36" stroke="currentColor" stroke-width="1.1"/></symbol>
+  <symbol id="blossom" viewBox="-30 -30 60 60">
+    <g fill="#fff" stroke="currentColor" stroke-width="1.6">
+      <ellipse cx="0" cy="-14" rx="8.5" ry="13"/>
+      <ellipse cx="0" cy="-14" rx="8.5" ry="13" transform="rotate(72)"/>
+      <ellipse cx="0" cy="-14" rx="8.5" ry="13" transform="rotate(144)"/>
+      <ellipse cx="0" cy="-14" rx="8.5" ry="13" transform="rotate(216)"/>
+      <ellipse cx="0" cy="-14" rx="8.5" ry="13" transform="rotate(288)"/>
+    </g>
+    <circle r="4" fill="#cfdff2" stroke="currentColor" stroke-width="1.4"/>
+    <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M0-5V-9M5-1.5l3.5-1.2M3 4.5l2.5 3M-3 4.5l-2.5 3M-5-1.5l-3.5-1.2"/></g>
+  </symbol>
+  <symbol id="branch" viewBox="0 0 220 340">
+    <path d="M24 336C46 240 92 140 186 30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <g color="#7d9ec9">
+      <use href="#leaf" width="44" height="32" transform="translate(40 262) rotate(-150)"/>
+      <use href="#leaf" width="44" height="32" transform="translate(44 252) rotate(-10)"/>
+      <use href="#leaf" width="44" height="32" transform="translate(62 206) rotate(-170)"/>
+      <use href="#leaf" width="44" height="32" transform="translate(70 196) rotate(-20)"/>
+      <use href="#leaf" width="44" height="32" transform="translate(98 150) rotate(-160)"/>
+      <use href="#leaf" width="44" height="32" transform="translate(106 142) rotate(-35)"/>
+      <use href="#leaf" width="44" height="32" transform="translate(136 96) rotate(-170)"/>
+      <use href="#leaf" width="44" height="32" transform="translate(146 84) rotate(-50)"/>
+    </g>
+    <use href="#blossom" width="64" height="64" x="154" y="0" color="#5f86bb"/>
+    <use href="#blossom" width="42" height="42" x="50" y="128" color="#5f86bb"/>
+    <use href="#blossom" width="34" height="34" x="8" y="214" color="#5f86bb"/>
+  </symbol>
+
+  <!-- 水彩質感：用雜訊位移模擬暈染邊緣 -->
+  <filter id="wc" x="-25%" y="-25%" width="150%" height="150%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" seed="4" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="8" result="d"/>
+    <feGaussianBlur in="d" stdDeviation="1"/>
+  </filter>
+  <filter id="wcsoft" x="-30%" y="-30%" width="160%" height="160%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="9" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="22" result="d"/>
+    <feGaussianBlur in="d" stdDeviation="9"/>
+  </filter>
+  <radialGradient id="wash" cx="50%" cy="50%" r="50%">
+    <stop offset="0" stop-color="#a9c3e3" stop-opacity=".55"/><stop offset="1" stop-color="#a9c3e3" stop-opacity="0"/>
+  </radialGradient>
+
+  <symbol id="wcf" viewBox="-50 -50 100 100">
+    <g filter="url(#wc)">
+      <g fill="currentColor" fill-opacity=".34" stroke="currentColor" stroke-opacity=".5" stroke-width="1.3">
+        <ellipse cy="-23" rx="15" ry="25"/><ellipse cy="-23" rx="15" ry="25" transform="rotate(51)"/>
+        <ellipse cy="-23" rx="15" ry="25" transform="rotate(103)"/><ellipse cy="-23" rx="15" ry="25" transform="rotate(154)"/>
+        <ellipse cy="-23" rx="15" ry="25" transform="rotate(206)"/><ellipse cy="-23" rx="15" ry="25" transform="rotate(257)"/>
+        <ellipse cy="-23" rx="15" ry="25" transform="rotate(309)"/>
+      </g>
+      <g fill="currentColor" fill-opacity=".42" stroke="currentColor" stroke-opacity=".45" stroke-width="1">
+        <ellipse cy="-13" rx="9" ry="16" transform="rotate(25)"/><ellipse cy="-13" rx="9" ry="16" transform="rotate(85)"/>
+        <ellipse cy="-13" rx="9" ry="16" transform="rotate(145)"/><ellipse cy="-13" rx="9" ry="16" transform="rotate(205)"/>
+        <ellipse cy="-13" rx="9" ry="16" transform="rotate(265)"/><ellipse cy="-13" rx="9" ry="16" transform="rotate(325)"/>
+      </g>
+      <g fill="#fff" fill-opacity=".38">
+        <ellipse cy="-9" rx="4.5" ry="9"/><ellipse cy="-9" rx="4.5" ry="9" transform="rotate(120)"/><ellipse cy="-9" rx="4.5" ry="9" transform="rotate(240)"/>
+      </g>
+      <circle r="6" fill="#efd79b" fill-opacity=".85"/>
+      <g fill="#c9a24d" fill-opacity=".7"><circle cx="-2" cy="-2" r="1.2"/><circle cx="2.5" cy="1" r="1.2"/><circle cx="-1" cy="3.2" r="1"/></g>
+    </g>
+  </symbol>
+  <symbol id="wcl" viewBox="0 0 80 40">
+    <g filter="url(#wc)">
+      <path d="M2 20C20-2 60-2 78 20 60 42 20 42 2 20z" fill="currentColor" fill-opacity=".45" stroke="currentColor" stroke-opacity=".55" stroke-width="1.2"/>
+      <path d="M6 20H72" stroke="#fff" stroke-opacity=".6" stroke-width="1"/>
+    </g>
+  </symbol>
+  <!-- 花束：暈染底 + 葉 + 三朵水彩花 + 小花苞 -->
+  <symbol id="bouquet" viewBox="0 0 320 320">
+    <ellipse cx="125" cy="125" rx="140" ry="120" fill="url(#wash)" filter="url(#wcsoft)"/>
+    <ellipse cx="60" cy="190" rx="70" ry="50" fill="#e8b9c6" fill-opacity=".35" filter="url(#wcsoft)"/>
+    <g>
+      <use href="#wcl" x="150" y="108" width="100" height="50" color="#8fb5a6" transform="rotate(25 200 133)"/>
+      <use href="#wcl" x="6" y="120" width="96" height="48" color="#7fa3c9" transform="rotate(70 54 144)"/>
+      <use href="#wcl" x="110" y="190" width="100" height="50" color="#8fb5a6" transform="rotate(-20 160 215)"/>
+      <use href="#wcl" x="170" y="40" width="80" height="40" color="#7fa3c9" transform="rotate(-35 210 60)"/>
+    </g>
+    <use href="#wcf" x="20" y="20" width="170" height="170" color="#6f97cf"/>
+    <use href="#wcf" x="150" y="10" width="100" height="100" color="#e3a9bb" transform="rotate(20 200 60)"/>
+    <use href="#wcf" x="85" y="145" width="92" height="92" color="#b3aee0" transform="rotate(-15 131 191)"/>
+    <g filter="url(#wc)" fill-opacity=".6">
+      <circle cx="248" cy="150" r="9" fill="#6f97cf"/><circle cx="268" cy="132" r="6" fill="#e3a9bb"/>
+      <circle cx="40" cy="236" r="8" fill="#b3aee0"/><circle cx="20" cy="258" r="5" fill="#6f97cf"/>
+      <circle cx="210" cy="230" r="6" fill="#e3a9bb"/>
+    </g>
+  </symbol>
+  <symbol id="i-heart" viewBox="0 0 40 36"><path d="M20 34C6 24 2 16 2 10 2 5 6 2 10 2c4 0 8 3 10 7 2-4 6-7 10-7 4 0 8 3 8 8 0 6-4 14-18 24z" fill="currentColor" stroke="#1f2f55" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 40 40"><path d="M20 2c1 10 8 17 18 18-10 1-17 8-18 18C19 28 12 21 2 20 12 19 19 12 20 2z" fill="currentColor" stroke="#1f2f55" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-balloon" viewBox="0 0 40 70"><ellipse cx="20" cy="20" rx="16" ry="18" fill="currentColor" stroke="#1f2f55" stroke-width="2.5"/><ellipse cx="14" cy="13" rx="4" ry="6" fill="#fff" fill-opacity=".55" transform="rotate(20 14 13)"/><path d="M20 38l-4 6h8z" fill="currentColor" stroke="#1f2f55" stroke-width="2.5" stroke-linejoin="round"/><path d="M20 44c-6 6 6 10 0 24" fill="none" stroke="#1f2f55" stroke-width="2.2"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 80 44"><path d="M18 40a14 14 0 0 1-2-28 18 18 0 0 1 34-4 15 15 0 0 1 14 14 13 13 0 0 1 0 18z" fill="#fff" stroke="#1f2f55" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 60 40"><path d="M2 18L58 2 40 38 28 24z" fill="#fff" stroke="#1f2f55" stroke-width="2.5" stroke-linejoin="round"/><path d="M28 24L58 2M28 24v12l6-8" fill="none" stroke="#1f2f55" stroke-width="2.5" stroke-linejoin="round"/></symbol>
+  <symbol id="i-corner" viewBox="0 0 44 44"><path d="M3 30V9Q3 3 9 3H30" fill="none" stroke="#1f2f55" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" fill="#fff" stroke="#1f2f55" stroke-width="2"/><circle cx="3" cy="38" r="1.8" fill="#1f2f55"/><circle cx="38" cy="3" r="1.8" fill="#1f2f55"/></symbol>
+  <symbol id="orn" viewBox="0 0 200 24">
+    <path d="M0 12H78M122 12H200" stroke="currentColor" stroke-width="1"/>
+    <use href="#blossom" x="88" y="-4" width="24" height="32" color="#5f86bb"/>
+  </symbol>
+</svg>
+
+<div class="sheet">
+  <svg class="corner c1" aria-hidden="true"><use href="#i-corner"/></svg>
+  <svg class="corner c2" aria-hidden="true"><use href="#i-corner"/></svg>
+  <svg class="corner c3" aria-hidden="true"><use href="#i-corner"/></svg>
+  <svg class="corner c4" aria-hidden="true"><use href="#i-corner"/></svg>
+  <span class="side l">WEDDING PLANNER</span>
+  <span class="side r">WEDDING PLANNER</span>
+
+  <svg class="bq tl" aria-hidden="true"><use href="#bouquet"/></svg>
+  <svg class="bq tr" aria-hidden="true"><use href="#bouquet"/></svg>
+  <svg class="bq bl" aria-hidden="true"><use href="#bouquet"/></svg>
+  <svg class="bq br" aria-hidden="true"><use href="#bouquet"/></svg>
+
+  <!-- 設定畫面：婚顧幫新人填寫 -->
+  <main id="setup" class="wrap">
+    <header class="hero">
+      <p class="script">We're getting married</p>
+      <h1>婚禮計畫書</h1>
+      <svg class="orn" aria-hidden="true"><use href="#orn"/></svg>
+      <p class="tagline">一起把「我們的婚禮」準備得剛剛好</p>
+      <p class="sub">先告訴我們你們的狀況，<br>我們會整理出專屬於你們的籌備計畫。</p>
+    </header>
+
+    <section class="card">
+      <h2><span class="no">01</span>基本資料</h2>
+      <div class="row">
+        <label>新娘<input id="bride" placeholder="姓名或暱稱"></label>
+        <label>新郎<input id="groom" placeholder="姓名或暱稱"></label>
+      </div>
+      <label>婚期<input id="date" type="date"></label>
+      <div class="row">
+        <label>宴客縣市<select id="county"></select></label>
+        <label>宴客地點<input id="venue" placeholder="例如：○○飯店（可先留白）"></label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2><span class="no">02</span>目前準備進度</h2>
+      <p class="hint">請替每個項目選擇狀態，不需要的項目選「不需要」就不會出現在計畫書裡。</p>
+      <div id="items"></div>
+    </section>
+
+    <button id="generate" class="btn primary big">產生專屬婚禮計畫書</button>
+    <p id="err" class="err" hidden></p>
+  </main>
+
+  <!-- 計畫書畫面 -->
+  <main id="plan" class="wrap" hidden>
+    <header class="hero">
+      <p class="script">Save the date</p>
+      <h1 id="names" class="names"></h1>
+      <p class="date" id="dateText"></p>
+      <p class="place" id="placeText" hidden></p>
+      <div class="countdown">
+        <small>距離婚禮還有</small>
+        <span id="days">0</span>
+        <em>DAYS</em>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2><span class="no">01</span>目前準備進度</h2>
+      <div class="bar"><div id="barFill"></div></div>
+      <p class="hint" id="progressText"></p>
+    </section>
+
+    <section class="coupon">
+      <p class="script small">Coupon</p>
+      <h2>實用婚禮任務指南 &amp; 專屬優惠券</h2>
+      <p>加入新娘物語官方 LINE，從選單領取推薦廠商優惠券，或呼叫線上婚顧協助。</p>
+      <a class="btn primary" href="https://line.me/R/ti/p/@weddings.tw" target="_blank" rel="noopener">領取推薦廠商優惠券</a>
+    </section>
+
+    <h2 class="sec"><span class="no">02</span>婚禮籌備時程表</h2>
+    <div id="timeline"></div>
+
+    <section class="card share">
+      <h2><span class="no">03</span>專屬連結</h2>
+      <p class="hint">複製這個連結傳給新人，他們打開就是這份計畫書。勾選的待辦事項會記在他們自己的瀏覽器裡。</p>
+      <div class="row btns">
+        <button id="copy" class="btn primary">複製連結</button>
+        <button id="edit" class="btn">重新編輯</button>
+      </div>
+      <p id="copied" class="hint" hidden>已複製！</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <svg class="orn" aria-hidden="true"><use href="#orn"/></svg>
+    <p class="script small">With love</p>
+  </footer>
+</div>
+
+<script src="links.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

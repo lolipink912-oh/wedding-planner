@@ -1,0 +1,157 @@
+:root{
+  --bg:#edf3fa; --paper:#fdfeff; --navy:#2c4670; --blue:#5f86bb; --soft:#b3c9e4; --mist:#e8f0f9; --mist2:#f4f8fc;
+  --ink:#33415c; --muted:#7a869c; --rose:#c58a98;
+  --serif:"Noto Serif TC","Songti TC",serif; --script:"Cormorant Garamond",serif;
+  --font:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);line-height:1.85;font-family:var(--font);font-weight:400;min-height:100vh;
+  background:radial-gradient(circle at 8% 10%,rgba(222,190,200,.2),transparent 36%),radial-gradient(circle at 92% 90%,rgba(179,174,224,.2),transparent 40%),var(--bg)}
+[hidden]{display:none!important}
+
+/* ───── 雙線外框 + 細緻角飾 ───── */
+.sheet{position:relative;max-width:780px;margin:26px auto;background:radial-gradient(ellipse at 50% 35%,#fff,var(--paper) 70%);
+  border:1px solid var(--navy);overflow:hidden;box-shadow:0 12px 40px rgba(44,70,112,.12)}
+.sheet::before{content:"";position:absolute;inset:8px;border:1px solid var(--soft);pointer-events:none;z-index:3}
+.corner{position:absolute;width:40px;height:40px;z-index:4;pointer-events:none;opacity:.85}
+.corner.c1{left:8px;top:8px} .corner.c2{right:8px;top:8px;transform:scaleX(-1)}
+.corner.c3{left:8px;bottom:8px;transform:scaleY(-1)} .corner.c4{right:8px;bottom:8px;transform:scale(-1,-1)}
+.side{position:absolute;top:50%;font-size:9px;letter-spacing:.5em;writing-mode:vertical-rl;transform:translateY(-50%);
+  z-index:4;color:var(--blue);font-family:var(--script)}
+.side.l{left:16px} .side.r{right:16px;transform:translateY(-50%) rotate(180deg)}
+
+/* 水彩花束 */
+.bq{position:absolute;pointer-events:none;z-index:0;width:290px;height:290px}
+.bq.tl{left:-80px;top:-60px}
+.bq.tr{right:-110px;top:-80px;width:240px;height:240px;transform:scaleX(-1) rotate(20deg);opacity:.85}
+.bq.bl{left:-100px;bottom:-90px;width:250px;height:250px;transform:scaleY(-1) rotate(-10deg);opacity:.85}
+.bq.br{right:-80px;bottom:-70px;transform:scale(-1,-1)}
+
+.wrap{position:relative;z-index:2;padding:56px clamp(30px,6vw,60px) 28px}
+
+/* ───── 標題 ───── */
+.hero{text-align:center;padding:14px 0 30px}
+.script{font-family:var(--script);font-style:italic;font-size:26px;color:var(--blue);margin:0;letter-spacing:.04em}
+.script.small{font-size:20px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(34px,8vw,48px);letter-spacing:.22em;color:var(--navy);margin:6px 0 4px}
+h1.names{letter-spacing:.1em;font-size:clamp(28px,7vw,42px)}
+.orn{display:block;width:200px;height:24px;margin:8px auto;color:var(--soft)}
+.tagline{margin:6px 0 0;color:var(--blue);letter-spacing:.2em;font-size:14px}
+.sub{color:var(--muted);margin:12px 0 0;font-weight:300}
+.date{font-family:var(--serif);letter-spacing:.24em;color:var(--blue);margin:6px 0 0}
+.place{margin:0;color:var(--muted);font-size:14px;letter-spacing:.12em;font-weight:300}
+
+/* 拱形窗：倒數 */
+.countdown{margin:26px auto 0;width:164px;height:196px;border:1px solid var(--navy);border-radius:82px 82px 3px 3px;background:var(--mist2);
+  box-shadow:0 0 0 6px var(--paper),0 0 0 7px var(--soft);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.countdown small{font-size:12px;letter-spacing:.2em;color:var(--muted)}
+.countdown span{font-family:var(--script);font-size:66px;line-height:1.05;color:var(--navy);font-weight:500}
+.countdown em{font-style:normal;font-size:11px;letter-spacing:.4em;color:var(--blue)}
+
+/* ───── 區塊標題：細線圓編號 ───── */
+h2{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:.08em;color:var(--navy);margin:0 0 14px;display:flex;align-items:center;gap:12px}
+h2 .no{flex:none;display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;border:1px solid var(--blue);
+  color:var(--blue);font-family:var(--script);font-style:italic;font-weight:500;font-size:17px;background:#fff;box-shadow:0 0 0 3px var(--mist)}
+h2.sec{margin:40px 0 22px;padding-bottom:10px;border-bottom:1px solid var(--soft)}
+.hint{color:var(--muted);font-size:14px;margin:0 0 12px;font-weight:300}
+.err{color:var(--rose);text-align:center}
+
+/* ───── 卡片 ───── */
+.card{background:rgba(244,248,252,.92);border:1px solid var(--soft);border-radius:4px;padding:24px 22px;margin-bottom:24px;position:relative}
+.card::after{content:"";position:absolute;inset:4px;border:1px solid rgba(179,201,228,.45);pointer-events:none}
+
+label{display:block;font-size:14px;color:var(--navy);margin-bottom:12px;flex:1;letter-spacing:.05em}
+input:not([type=radio]):not([type=checkbox]),select{display:block;width:100%;margin-top:5px;padding:10px 14px;font:inherit;
+  background:#fff;color:var(--ink);border:1px solid var(--soft);border-radius:3px}
+input:focus,select:focus{outline:2px solid var(--blue);outline-offset:1px}
+.row{display:flex;gap:14px;flex-wrap:wrap}
+.row>label{min-width:140px}
+
+/* ───── 按鈕 ───── */
+.btn{font:inherit;letter-spacing:.12em;cursor:pointer;border:1px solid var(--navy);background:#fff;color:var(--navy);
+  padding:9px 24px;border-radius:2px;text-decoration:none;display:inline-block;transition:background .2s,color .2s}
+.btn:hover{background:var(--mist)}
+.btn.primary{background:var(--navy);color:#fff}
+.btn.primary:hover{background:var(--blue);border-color:var(--blue)}
+.btn.big{display:block;width:100%;padding:15px;font-size:17px;margin-top:6px}
+.btn.sm{padding:5px 16px;font-size:14px}
+
+/* ───── 設定頁 ───── */
+.item{padding:14px 0;border-top:1px dashed var(--soft)}
+.item:first-child{border-top:0}
+.item b{display:block;margin-bottom:8px;font-family:var(--serif);font-weight:600;color:var(--navy)}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg input{position:absolute;opacity:0}
+.seg label{margin:0;flex:none;padding:3px 16px;border:1px solid var(--soft);border-radius:99px;font-size:14px;
+  cursor:pointer;background:#fff;color:var(--muted);letter-spacing:.05em;transition:all .15s}
+.seg label:hover{border-color:var(--blue)}
+.seg label:has(input:checked){background:var(--navy);border-color:var(--navy);color:#fff}
+.seg label[data-v="2"]:has(input:checked){background:var(--blue);border-color:var(--blue)}
+.seg label[data-v="3"]:has(input:checked){background:var(--soft);border-color:var(--soft);color:var(--navy)}
+.seg label:has(input:focus-visible){outline:2px solid var(--blue);outline-offset:2px}
+.due{margin:12px 0 0;font-size:13px;color:var(--muted)}
+.due input{max-width:220px}
+.due.fixed{color:var(--blue)}
+
+/* ───── 進度條 ───── */
+.bar{height:8px;background:#fff;border:1px solid var(--soft);border-radius:99px;overflow:hidden;margin:6px 0 10px}
+#barFill{height:100%;width:0;background:linear-gradient(90deg,var(--soft),var(--blue));transition:width .5s}
+
+/* ───── 優惠券 ───── */
+.coupon{text-align:center;background:var(--mist);border:1px solid var(--soft);padding:32px 22px;margin-bottom:12px;position:relative}
+.coupon::after{content:"";position:absolute;inset:6px;border:1px dashed var(--blue);pointer-events:none}
+.coupon h2{justify-content:center;font-size:19px}
+.coupon p{margin:0 0 14px;font-size:15px}
+.coupon .script{margin:0}
+
+/* ───── 時程卡片 ───── */
+.t-item{position:relative;background:#fff;border:1px solid var(--soft);border-radius:4px;margin:0 0 18px;padding:16px 20px 16px 74px}
+.t-item.late{border-color:var(--rose)}
+.t-item.done{background:var(--mist2)}
+.t-item summary{cursor:pointer;list-style:none;display:flex;flex-direction:column;gap:2px;padding-right:28px;position:relative}
+.t-item summary::-webkit-details-marker{display:none}
+.t-item summary::after{content:"+";position:absolute;right:0;top:-2px;font-size:24px;font-weight:300;color:var(--blue)}
+.t-item[open] summary::after{content:"−"}
+.t-item .no{position:absolute;left:-52px;top:-2px;width:38px;height:38px;border-radius:50%;border:1px solid var(--blue);background:#fff;
+  color:var(--blue);display:grid;place-items:center;font-family:var(--script);font-style:italic;font-size:19px;box-shadow:0 0 0 3px var(--mist)}
+.t-item.done .no{background:var(--blue);color:#fff}
+.t-title{font-family:var(--serif);font-weight:600;font-size:18px;color:var(--navy);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.t-when{font-size:13px;color:var(--muted);font-weight:300}
+.badge{font-family:var(--font);font-size:12px;font-weight:400;padding:0 10px;border:1px solid var(--blue);border-radius:99px;color:var(--blue);letter-spacing:.05em}
+.badge.late{border-color:var(--rose);color:var(--rose)}
+.badge.go{background:var(--blue);color:#fff}
+.t-body{margin-top:14px;padding-top:6px;border-top:1px solid var(--mist)}
+.t-body h4{margin:16px 0 8px;font-family:var(--serif);font-size:14px;font-weight:600;color:var(--blue);letter-spacing:.14em;display:flex;align-items:center;gap:8px}
+.t-body h4::after{content:"";flex:1;height:1px;background:var(--mist)}
+.check{display:flex;align-items:flex-start;gap:10px;font-size:15px;margin:6px 0;cursor:pointer}
+.check input{appearance:none;flex:none;width:18px;height:18px;margin:5px 0 0;border:1px solid var(--blue);border-radius:2px;background:#fff;cursor:pointer;position:relative}
+.check input:checked{background:var(--blue)}
+.check input:checked::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 1.6px 1.6px 0;transform:rotate(45deg)}
+.check.on span{color:var(--muted);text-decoration:line-through}
+.tips{margin:0;padding-left:20px;font-size:15px}
+.tips li::marker{color:var(--soft)}
+
+.vendor{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:var(--mist2);border:1px solid var(--soft);padding:10px 14px;font-size:14px}
+
+/* 延伸閱讀 */
+.reads{list-style:none;margin:0;padding:0}
+.reads a{display:flex;justify-content:space-between;gap:12px;padding:8px 2px;border-bottom:1px dotted var(--soft);color:var(--navy);text-decoration:none;font-size:15px}
+.reads a::after{content:"→";color:var(--blue);transition:transform .15s}
+.reads a:hover{color:var(--blue)}
+.reads a:hover::after{transform:translateX(4px)}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+.share .btn{flex:none}
+.foot{position:relative;z-index:2;text-align:center;padding:0 0 30px}
+
+@media (max-width:640px){
+  .t-item{padding-left:20px}
+  .t-item .no{position:static;margin-bottom:6px}
+  .bq{width:190px;height:190px;opacity:.8}
+  .bq.tl{left:-50px;top:-44px}
+  .bq.tr{right:-80px;top:-60px;width:160px;height:160px}
+  .bq.bl{left:-70px;bottom:-60px;width:160px;height:160px}
+  .bq.br{right:-50px;bottom:-44px}
+  .wrap{padding-top:84px}
+}

@@ -151,9 +151,21 @@
     </section>
 
     <section class="card">
-      <h2><span class="no">02</span>目前準備進度</h2>
+      <h2><span class="no">02</span>婚禮形式與流程表</h2>
+      <p class="hint">請勾選新人有舉辦的項目（可複選），計畫書會附上對應的婚禮流程表。</p>
+      <div class="seg" id="flowOpts"></div>
+    </section>
+
+    <section class="card">
+      <h2><span class="no">03</span>目前準備進度</h2>
       <p class="hint">請替每個項目選擇狀態，不需要的項目選「不需要」就不會出現在計畫書裡。</p>
       <div id="items"></div>
+    </section>
+
+    <section class="card">
+      <h2><span class="no">04</span>小幫手建議<small>（選填）</small></h2>
+      <p class="hint">針對新人的特殊狀況留下提醒或叮嚀。有填寫才會顯示在計畫書裡，不填就不會出現。</p>
+      <textarea id="note" rows="4" maxlength="600" placeholder="例如：雙方家長不同縣市，建議先確認提親與訂婚是否同日舉辦…"></textarea>
     </section>
 
     <button id="generate" class="btn primary big">產生專屬婚禮計畫書</button>
@@ -185,6 +197,17 @@
       <h2>實用婚禮任務指南 &amp; 專屬優惠券</h2>
       <p>加入新娘物語官方 LINE，從選單領取推薦廠商優惠券，或呼叫線上婚顧協助。</p>
       <a class="btn primary" href="https://line.me/R/ti/p/@weddings.tw" target="_blank" rel="noopener">領取推薦廠商優惠券</a>
+    </section>
+
+    <section class="card note" id="noteCard" hidden>
+      <h2>小幫手建議</h2>
+      <p id="noteText"></p>
+    </section>
+
+    <section class="card flows" id="flowCard" hidden>
+      <h2>婚禮流程表</h2>
+      <p class="hint" id="flowHint"></p>
+      <div id="flowList"></div>
     </section>
 
     <h2 class="sec"><span class="no">02</span>婚禮籌備時程表</h2>

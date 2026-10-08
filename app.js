@@ -80,6 +80,28 @@ function renderSetup(state){
   $("county").innerHTML = `<option value="">請選擇</option>` + COUNTIES.map(c => `<option ${state.c===c?"selected":""}>${c}</option>`).join("");
   $("bride").value = state.b || ""; $("groom").value = state.g || ""; $("date").value = state.d || "";
   $("venue").value = state.v || "";
+  $("flowOpts").innerHTML = FLOW_OPTIONS.map(([c, l]) =>
+    `<label><input type="checkbox" value="${c}" ${(state.f || []).includes(c) ? "checked" : ""}><span>${l}</span></label>`).join("");
+  $("note").value = state.n || "";
+}
+
+// 婚禮形式 → 流程表：用最少份數的試算表剛好湊出所選項目
+function pickFlows(sel){
+  const bit = c => 1 << FLOW_OPTIONS.findIndex(o => o[0] === c);
+  const want = sel.reduce((m, c) => m | bit(c), 0);
+  if (!want) return [];
+  const files = FLOW_FILES.map(f => ({ ...f, mask: f.parts.reduce((m, c) => m | bit(c), 0) }))
+    .sort((a, b) => b.parts.length - a.parts.length);
+  const best = { 0: [] };
+  for (let m = 1; m <= want; m++) {
+    if ((m & want) !== m) continue;
+    for (const f of files) {
+      if ((f.mask & m) !== f.mask || !best[m ^ f.mask]) continue;
+      const cand = [f, ...best[m ^ f.mask]];
+      if (!best[m] || cand.length < best[m].length) best[m] = cand;
+    }
+  }
+  return best[want] || [];
 }
 
 function collect(){
@@ -88,7 +110,8 @@ function collect(){
     s[it.id] = document.querySelector(`input[name=s_${it.id}]:checked`).value;
     const el = $("t_" + it.id); if (el && el.value) t[it.id] = el.value;
   });
-  return { b:$("bride").value.trim(), g:$("groom").value.trim(), d:$("date").value, c:$("county").value, v:$("venue").value.trim(), s, t };
+  const f = [...document.querySelectorAll("#flowOpts input:checked")].map(i => i.value);
+  return { b:$("bride").value.trim(), g:$("groom").value.trim(), d:$("date").value, c:$("county").value, v:$("venue").value.trim(), s, t, f, n:$("note").value.trim() };
 }
 
 function show(which){ $("setup").hidden = which !== "setup"; $("plan").hidden = which !== "plan"; window.scrollTo(0,0); }
@@ -141,6 +164,21 @@ function renderPlan(state, key){
   $("days").textContent = Math.max(left, 0);
   const place = [state.c, state.v].filter(Boolean).join("・");
   $("placeText").textContent = place ? "宴客地點　" + place : ""; $("placeText").hidden = !place;
+
+  // 小幫手建議：有填才顯示
+  $("noteCard").hidden = !state.n;
+  $("noteText").textContent = state.n || "";
+
+  // 婚禮流程表：依所選形式對應 Google 試算表
+  const flows = pickFlows(state.f || []);
+  $("flowCard").hidden = !flows.length;
+  if (flows.length) {
+    const labels = FLOW_OPTIONS.filter(o => state.f.includes(o[0])).map(o => o[1]).join("・");
+    $("flowHint").textContent = `依你們的婚禮形式（${labels}），整理了以下流程表。點「建立副本」就能存成自己的版本再編輯。`;
+    $("flowList").innerHTML = flows.map(f => `<div class="flow"><b>${esc(f.name)}</b>
+      <div class="acts"><a class="btn sm primary" href="https://docs.google.com/spreadsheets/d/${f.id}/edit" target="_blank" rel="noopener">開啟流程表</a>
+      <a class="btn sm" href="https://docs.google.com/spreadsheets/d/${f.id}/copy" target="_blank" rel="noopener">建立副本</a></div></div>`).join("");
+  }
 
   const saved = JSON.parse(localStorage.getItem("wp_" + key) || "{}");
   const list = ITEMS.filter(it => state.s[it.id] !== "3").map(it => {
